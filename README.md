@@ -38,7 +38,7 @@ The program is invoked by the following command:
 python main.py <sorting_algorithm>
 ```
 
-The <sorting_algorithm> parameter can be one of the following:
+The <sorting_algorithm> parameter can be one of the following: 
 
 | Parameter Name | Sorting Algorithm Used|
 |----------------|-------------------|
@@ -48,11 +48,42 @@ The <sorting_algorithm> parameter can be one of the following:
 |merge|Merge Sort|
 |quick|Quicksort|
 |heap|Heapsort|
-|count|Counting Sort|g
+|count|Counting Sort|
 |radix|Radix Sort|
 |bucket|Bucket Sort|
 
-## Results :100:
+If no parameter is set, the program defaults to using bubblesort.
+
+Then, the user will be prompted to select an image that will be randomized and sorted.
+
+After a few seconds, a video showing the sorting algorithm at work will open and begin playing.
+
+The statistics of the sorting algorithm, such as the number of array comparisons and
+swaps, will also be output to the terminal.
+
+## Examples and Results :100:
+Here is an example of how this program works and the results that come from it.
+
+
+Take this ~cute~ picture of myself as the input image:
+
+![](screenshots/input.png)
+
+---
+This is the image after randomization:
+
+![](screenshots/random.png)
+
+---
+This is a snippet of the resulting video showing a visualization of how the 
+sorting algorithm works (bubblesort, in this case):
+
+![](screenshots/result.gif)
+
+---
+These are the statistics that are printed to the terminal:
+
+![](screenshots/terminal_output.png)
 
 ## TODO :scroll:
 
