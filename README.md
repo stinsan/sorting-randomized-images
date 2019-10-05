@@ -2,8 +2,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)<br/>
 
-## Getting Started :white_check_mark:
-### Prerequisites
+## Getting Started :heavyg_check_mark:
+#### Prerequisites
 This program uses the following Python modules:
 
 - Pillow
@@ -26,7 +26,7 @@ it in the default installation. <br/>
 After downloading, unzip the file, then place the .dll file in the same directory as main.py. <br/>
 Download the latest release from here: https://github.com/cisco/openh264/releases
 
-### Installation
+#### Installation
 All there is to do is clone this repository.
 ```
 git clone https://github.com/stinsan/Sorting-Randomized-Images.git
