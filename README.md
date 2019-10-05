@@ -21,7 +21,7 @@ pip install numpy
 pip install opencv
 ```
 
-The H264 video codec must also be installed becuase OpenCV does not include
+- The H264 video codec must also be installed becuase OpenCV does not include
 it in the default installation. <br/>
-Place the .dll file in the same directory as main.py. <br/>
+After downloading, unzip the file, then place the .dll file in the same directory as main.py. <br/>
 Download the latest release from here: https://github.com/cisco/openh264/releases
