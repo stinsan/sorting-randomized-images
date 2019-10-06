@@ -57,13 +57,13 @@ If no parameter is set, the program defaults to using bubblesort.
 Then, the user will be prompted to select an image that will be randomized and sorted.
 
 After a few seconds, a video showing the sorting algorithm at work will open and begin playing.
+This video will also be saved in the same directory as the program as "result.mp4".
 
 The statistics of the sorting algorithm, such as the number of array comparisons and
 swaps, will also be output to the terminal.
 
 ## Examples and Results :100:
 Here is an example of how this program works and the results that come from it.
-
 
 Take this cute picture of myself as the input image:
 
@@ -85,7 +85,7 @@ These are the statistics that are printed to the terminal:
 ## TODO :scroll:
 
 - Insertion sort
-- Selection sort
+- ~Selection sort~
 - Merge sort
 - Quicksort
 - Heapsort
