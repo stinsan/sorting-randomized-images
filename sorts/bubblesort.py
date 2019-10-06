@@ -52,8 +52,9 @@ def bubblesort(arr, randomized_image):
             comp_ctr += 1
 
     # Print statistics
-    print("Number of Image Columns: ", n)
-    print("Number of Comparisons: ", comp_ctr)
-    print("Number of Swaps: ", swap_ctr)
+    print("Sorting Algorithm: Bubblesort")
+    print("Number of Columns to be Sorted: ", n)
+    print("Number of Array Comparisons: ", comp_ctr)
+    print("Number of Array Swaps: ", swap_ctr)
 
     return frames
