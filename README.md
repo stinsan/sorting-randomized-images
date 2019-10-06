@@ -45,6 +45,7 @@ The <sorting_algorithm> parameter can be one of the following:
 |bubble|Bubblesort|
 |insert|Insertion Sort|
 |select|Selection Sort|
+|dselect|Double Selection Sort
 |merge|Merge Sort|
 |quick|Quicksort|
 |heap|Heapsort|
@@ -86,6 +87,7 @@ These are the statistics that are printed to the terminal:
 
 - Insertion sort
 - ~Selection sort~
+- ~Double selection sort~
 - Merge sort
 - Quicksort
 - Heapsort
