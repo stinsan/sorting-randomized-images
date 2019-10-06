@@ -9,13 +9,16 @@ from os import startfile
 from PIL import Image
 from sorts import bubblesort
 from sorts import selection_sort
+from sorts import double_selection_sort
 from tkinter import filedialog
 
 MAX_IMAGE_WIDTH = {"bubble": 350,
-                   "select": 1500}
+                   "select": 1500,
+                   "dselect": 1500}
 
 FRAME_SKIP = {"bubble": 12,
-              "select": 1}
+              "select": 1,
+              "dselect": 1}
 
 
 def open_input_window():
@@ -165,6 +168,9 @@ def sort(image_columns, randomized_image, argv):
     elif argv[1] == "select":
         video_frames = selection_sort.selection_sort(image_columns, randomized_image)
 
+    elif argv[1] == "dselect":
+        video_frames = double_selection_sort.double_selection_sort(image_columns, randomized_image)
+
     elif argv[1] == "insert":
         print("Insertion Sort")
         exit(0)
@@ -242,8 +248,8 @@ def make_video(frames, original_image, randomized_image, size, filename, argv):
     fourcc = cv2.VideoWriter_fourcc(*'avc1')  # Identifies the video codec (H264)
     video = cv2.VideoWriter(filename, fourcc, fps, size)
 
-    # Show the original, un-randomized image for two seconds.
-    for i in range(fps * 2):
+    # Show the original, un-randomized image for one second.
+    for i in range(fps):
         video.write(cv2.cvtColor(np.array(original_image), cv2.COLOR_RGB2BGR))
 
     # Show a blending of the un-randomized and randomized image for two seconds.
@@ -251,8 +257,8 @@ def make_video(frames, original_image, randomized_image, size, filename, argv):
         blended_image = Image.blend(original_image, randomized_image, i / (fps * 2))
         video.write(cv2.cvtColor(np.array(blended_image), cv2.COLOR_RGB2BGR))
 
-    # Show the randomized image for two seconds.
-    for i in range(fps * 2):
+    # Show the randomized image for one second.
+    for i in range(fps):
         video.write(cv2.cvtColor(np.array(randomized_image), cv2.COLOR_RGB2BGR))
 
     # Inserts every nth frame as defined by the frame_skip constant.
@@ -289,8 +295,7 @@ if __name__ == "__main__":
 
     make_video(frames, img, random_img, img.size, "result.mp4", sys.argv)
 
-    # Automatically open the video after 3 seconds
-    time.sleep(3)
+    # Automatically open the video
     startfile("result.mp4")
 
     '''
