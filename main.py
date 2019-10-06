@@ -8,7 +8,14 @@ import tkinter as tk
 from os import startfile
 from PIL import Image
 from sorts import bubblesort
+from sorts import selection_sort
 from tkinter import filedialog
+
+MAX_IMAGE_WIDTH = {"bubble": 350,
+                   "select": 1500}
+
+FRAME_SKIP = {"bubble": 12,
+              "select": 1}
 
 
 def open_input_window():
@@ -29,7 +36,7 @@ def open_input_window():
     return filename
 
 
-def resize_image(image):
+def resize_image(image, argv):
     """
     Resizes the image so that the program does not run out of memory
     when processing the sorting of the image.
@@ -38,6 +45,11 @@ def resize_image(image):
     ----------
     image : PIL Image File
         The image to be resized.
+
+    argv : list
+        A list of commands used in the program invocation.
+        The command at argv[1] designates what sorting algorithm
+        will be used.
 
     Returns
     -------
@@ -48,7 +60,7 @@ def resize_image(image):
 
     # Constant value that sets the width of the image, beware
     # when changing because higher resolutions may crash the program.
-    required_image_width = 350
+    required_image_width = MAX_IMAGE_WIDTH[argv[1]]
 
     # The amount to divide the size by to meet the required image width
     divisor = image.size[0] / required_image_width
@@ -151,8 +163,7 @@ def sort(image_columns, randomized_image, argv):
         video_frames = bubblesort.bubblesort(image_columns, randomized_image)
 
     elif argv[1] == "select":
-        print("Selection Sort")
-        exit(0)
+        video_frames = selection_sort.selection_sort(image_columns, randomized_image)
 
     elif argv[1] == "insert":
         print("Insertion Sort")
@@ -189,7 +200,7 @@ def sort(image_columns, randomized_image, argv):
     return video_frames
 
 
-def make_video(frames, original_image, randomized_image, size, filename):
+def make_video(frames, original_image, randomized_image, size, filename, argv):
     """
     Creates a video showing a given sorting algorithm on a given input image.
 
@@ -210,6 +221,11 @@ def make_video(frames, original_image, randomized_image, size, filename):
     filename : string
         The file name of the video to be output.
 
+    argv : list
+        A list of commands used in the program invocation.
+        The command at argv[1] designates what sorting algorithm
+        will be used.
+
     """
     # These are constants that affect the formation of the video.
     #
@@ -221,7 +237,7 @@ def make_video(frames, original_image, randomized_image, size, filename):
     # A higher frame_skip value will lead to a choppier video, but shorter
     # video processing time.
     fps = 60
-    frame_skip = 10
+    frame_skip = FRAME_SKIP[argv[1]]
 
     fourcc = cv2.VideoWriter_fourcc(*'avc1')  # Identifies the video codec (H264)
     video = cv2.VideoWriter(filename, fourcc, fps, size)
@@ -256,10 +272,13 @@ def make_video(frames, original_image, randomized_image, size, filename):
 
 if __name__ == "__main__":
 
+    if len(sys.argv) == 1:
+        sys.argv.append("bubble")
+
     filename = open_input_window()
 
     img = Image.open(filename)
-    img = resize_image(img)
+    img = resize_image(img, sys.argv)
 
     columns = make_columns(img, img.size)
 
@@ -268,7 +287,7 @@ if __name__ == "__main__":
 
     frames = sort(columns, random_img, sys.argv)
 
-    make_video(frames, img, random_img, img.size, "result.mp4")
+    make_video(frames, img, random_img, img.size, "result.mp4", sys.argv)
 
     # Automatically open the video after 3 seconds
     time.sleep(3)
