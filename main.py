@@ -2,6 +2,7 @@ import cv2
 import math
 import numpy as np
 import random
+import sys
 import time
 import tkinter as tk
 from os import startfile
@@ -121,6 +122,73 @@ def make_image(image_columns, size):
     return image
 
 
+def sort(image_columns, randomized_image, argv):
+    """
+    Chooses which sorting algorithm to use based on the parameters in argv.
+
+    Parameters
+    ----------
+    image_columns : list
+        A list of one-pixel wide columns of an image.
+
+    randomized_image : PIL Image File
+        The user's original image after it was randomized.
+
+    argv : list
+        A list of commands used in the program invocation.
+        The command at argv[1] designates what sorting algorithm
+        will be used.
+
+    Returns
+    -------
+    list
+        A list of images that are, essentially, the frames of the video.
+
+    """
+    video_frames = []
+
+    if len(argv) == 1 or argv[1] == "bubble":
+        video_frames = bubblesort.bubblesort(image_columns, randomized_image)
+
+    elif argv[1] == "select":
+        print("Selection Sort")
+        exit(0)
+
+    elif argv[1] == "insert":
+        print("Insertion Sort")
+        exit(0)
+
+    elif argv[1] == "merge":
+        print("Merge Sort")
+        exit(0)
+
+    elif argv[1] == "quick":
+        print("Quicksort")
+        exit(0)
+
+    elif argv[1] == "heap":
+        print("Heap Sort")
+        exit(0)
+
+    elif argv[1] == "count":
+        print("Counting Sort")
+        exit(0)
+
+    elif argv[1] == "radix":
+        print("Radix Sort")
+        exit(0)
+
+    elif argv[1] == "bucket":
+        print("Bucket Sort")
+        exit(0)
+
+    else:
+        print("Not a valid sort, try again.")
+        exit(0)
+
+    return video_frames
+
+
 def make_video(frames, original_image, randomized_image, size, filename):
     """
     Creates a video showing a given sorting algorithm on a given input image.
@@ -198,9 +266,9 @@ if __name__ == "__main__":
     random.shuffle(columns)
     random_img = make_image(columns, img.size)
 
-    video_frames = bubblesort.bubblesort(columns, random_img)
+    frames = sort(columns, random_img, sys.argv)
 
-    make_video(video_frames, img, random_img, img.size, "result.mp4")
+    make_video(frames, img, random_img, img.size, "result.mp4")
 
     # Automatically open the video after 3 seconds
     time.sleep(3)
