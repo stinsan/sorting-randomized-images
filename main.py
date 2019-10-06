@@ -278,6 +278,10 @@ def make_video(frames, original_image, randomized_image, size, filename, argv):
 
 if __name__ == "__main__":
 
+    if len(sys.argv) > 2:
+        print("Expected 2 arguments, try again.")
+        exit(-1)
+
     if len(sys.argv) == 1:
         sys.argv.append("bubble")
 
