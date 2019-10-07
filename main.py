@@ -14,12 +14,12 @@ from sorts import insertion_sort
 from sorts import quicksort
 from tkinter import filedialog
 
-MAX_IMAGE_WIDTH = {"bubble": 350,
-                   "select": 1500,
-                   "dselect": 1500,
-                   "insert": 350,
+MAX_IMAGE_WIDTH = {"bubble": 352,
+                   "select": 1440,
+                   "dselect": 1440,
+                   "insert": 352,
                    "merge": 0,
-                   "quick": 1000}
+                   "quick": 1024}
 
 FRAME_SKIP = {"bubble": 12,
               "select": 1,
