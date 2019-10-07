@@ -85,7 +85,7 @@ These are the statistics that are printed to the terminal:
 
 ## TODO :scroll:
 
-- Insertion sort
+- ~Insertion sort~
 - ~Selection sort~
 - ~Double selection sort~
 - Merge sort

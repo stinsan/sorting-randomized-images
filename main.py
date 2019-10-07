@@ -10,15 +10,18 @@ from PIL import Image
 from sorts import bubblesort
 from sorts import selection_sort
 from sorts import double_selection_sort
+from sorts import insertion_sort
 from tkinter import filedialog
 
 MAX_IMAGE_WIDTH = {"bubble": 350,
                    "select": 1500,
-                   "dselect": 1500}
+                   "dselect": 1500,
+                   "insert": 350}
 
 FRAME_SKIP = {"bubble": 12,
               "select": 1,
-              "dselect": 1}
+              "dselect": 1,
+              "insert": 12}
 
 
 def open_input_window():
@@ -172,8 +175,7 @@ def sort(image_columns, randomized_image, argv):
         video_frames = double_selection_sort.double_selection_sort(image_columns, randomized_image)
 
     elif argv[1] == "insert":
-        print("Insertion Sort")
-        exit(0)
+        video_frames = insertion_sort.insertion_sort(image_columns, randomized_image)
 
     elif argv[1] == "merge":
         print("Merge Sort")
