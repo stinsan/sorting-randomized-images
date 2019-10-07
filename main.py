@@ -11,17 +11,22 @@ from sorts import bubblesort
 from sorts import selection_sort
 from sorts import double_selection_sort
 from sorts import insertion_sort
+from sorts import quicksort
 from tkinter import filedialog
 
 MAX_IMAGE_WIDTH = {"bubble": 350,
                    "select": 1500,
                    "dselect": 1500,
-                   "insert": 350}
+                   "insert": 350,
+                   "merge": 0,
+                   "quick": 1000}
 
 FRAME_SKIP = {"bubble": 12,
               "select": 1,
               "dselect": 1,
-              "insert": 12}
+              "insert": 12,
+              "merge": 0,
+              "quick": 4}
 
 
 def open_input_window():
@@ -182,8 +187,23 @@ def sort(image_columns, randomized_image, argv):
         exit(0)
 
     elif argv[1] == "quick":
-        print("Quicksort")
-        exit(0)
+        counters = [0, 0]  # Index 0 is the comparison counter, Index 1 is the swap counter
+
+        # Because quicksort is a recursive sorting algorithm, it needs to be changed to fit my needs
+        qs_ret = quicksort.quicksort(image_columns, 0, len(image_columns) - 1, [randomized_image],
+                                     randomized_image, counters)
+
+        # The frames of the video are returned at index 0, and the counters are returned at index 1.
+        # Again, comparison counter is at index 0, and swap counter is at index 1.
+        video_frames = qs_ret[0]
+        comp_ctr = qs_ret[1][0]
+        swap_ctr = qs_ret[1][1]
+
+        # Since quicksort is recursive, we must print the statistics outside of the sorting function.
+        print("Sorting Algorithm: Quicksort")
+        print("Number of Columns to be Sorted: ", len(image_columns))
+        print("Number of Array Comparisons: ", comp_ctr)
+        print("Number of Array Swaps: ", swap_ctr)
 
     elif argv[1] == "heap":
         print("Heap Sort")
@@ -247,7 +267,7 @@ def make_video(frames, original_image, randomized_image, size, filename, argv):
     fps = 60
     frame_skip = FRAME_SKIP[argv[1]]
 
-    fourcc = cv2.VideoWriter_fourcc(*'avc1')  # Identifies the video codec (H264)
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Identifies the video codec (H264)
     video = cv2.VideoWriter(filename, fourcc, fps, size)
 
     # Show the original, un-randomized image for one second.
@@ -267,8 +287,7 @@ def make_video(frames, original_image, randomized_image, size, filename, argv):
     frame_ctr = 0
     for f in frames:
         if frame_ctr % frame_skip == 0:
-            frame_copy = f.copy()
-            video.write(cv2.cvtColor(np.array(frame_copy), cv2.COLOR_RGB2BGR))
+            video.write(cv2.cvtColor(np.array(f), cv2.COLOR_RGB2BGR))
         frame_ctr += 1
 
     # Show the sorted image (the final frame) for two seconds.
@@ -306,8 +325,6 @@ if __name__ == "__main__":
 
     '''
     TODO:
-    insertion sort
-    selection sort
     merge sort
     quick sort
     heap sort
