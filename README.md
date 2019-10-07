@@ -89,7 +89,7 @@ These are the statistics that are printed to the terminal:
 - ~Selection sort~
 - ~Double selection sort~
 - Merge sort
-- Quicksort
+- ~Quicksort~
 - Heapsort
 - Counting sort
 - Radix sort
