@@ -20,17 +20,15 @@ pip install numpy
 ```
 pip install opencv
 ```
-
-- The H264 video codec must also be installed becuase OpenCV does not include
-it in the default installation. <br/>
-After downloading, unzip the file, then place the .dll file in the same directory as main.py. <br/>
-Download the latest release from here: https://github.com/cisco/openh264/releases
-
 ### Installation
-All there is to do is clone this repository.
+- First, clone this repository.
 ```
 git clone https://github.com/stinsan/Sorting-Randomized-Images.git
 ```
+- Then, the H264 video codec must also be installed becuase OpenCV does not include
+it in the default installation. <br/>
+After downloading, unzip the file, then place the .dll file in the same directory as main.py. <br/>
+Download the latest release from here: https://github.com/cisco/openh264/releases
 
 ## Running the Program :runner:
 The program is invoked by the following command:
